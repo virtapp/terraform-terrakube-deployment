@@ -83,7 +83,7 @@ dex:
     staticClients:
     - id: example-app
       redirectURIs:
-      - 'http://terrakube-ui.minikube.net'
+      - 'http://terrakube-ui.virtapp.io'
       - '/device/callback'
       - 'http://localhost:10000/login'
       - 'http://localhost:10001/login'
@@ -193,7 +193,7 @@ ingress:
   useTls: false
   ui:
     enabled: true
-    domain: "terrakube-ui.minikube.net"
+    domain: "terrakube-ui.virtapp.io"
     path: "/(.*)"
     pathType: "Prefix" 
     annotations:
@@ -201,7 +201,7 @@ ingress:
       nginx.ingress.kubernetes.io/use-regex: "true"
   api:
     enabled: true
-    domain: "terrakube-api.minikube.net"
+    domain: "terrakube-api.virtapp.io"
     path: "/(.*)"
     pathType: "Prefix"
     annotations:
@@ -210,7 +210,7 @@ ingress:
       nginx.ingress.kubernetes.io/configuration-snippet: "proxy_set_header Authorization $http_authorization;"
   registry:
     enabled: true
-    domain: "terrakube-reg.minikube.net"
+    domain: "terrakube-reg.virtapp.io"
     path: "/(.*)"
     pathType: "Prefix"
     annotations:
