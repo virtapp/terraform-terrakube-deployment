@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/23049337/226212853-5b96a6ff-5a41-4b1c-9262-38666e43b491.png)
+![image](https://user-images.githubusercontent.com/23049337/227056974-b23209d4-1222-4ff5-8e3c-9e10439fe4c2.png)
 
  
 Kubernetes in Docker with Terraform
@@ -7,7 +7,7 @@ Kubernetes in Docker with Terraform
 
 🎯 About
 
-OpenMetadata Unlock the value of data assets with an end-to-end metadata platform that includes data discovery, governance, data quality, observability, and people collaborationd.
+Terrakube is an open source collaboration platform for running remote infrastructure as code operations using terraform that aims to be a complete replacement for close source tools like Terraform Enterprise, Scalr or Env0.
 🚀 Technologies
 
 OpenMetadata depends on following components to build a metadata platform
