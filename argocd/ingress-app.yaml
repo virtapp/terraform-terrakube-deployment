@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-route-open-metadata
+  name: ingress-route-open-terrakube
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/session-cookie-name: "open-metadata"
+    nginx.ingress.kubernetes.io/session-cookie-name: "terrakube"
     nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "300s"
@@ -50,7 +50,7 @@ spec:
       paths:
       - backend:
           service: 
-            name: openmetadata
+            name: terrakube
             port:
               number: 8585
         path: /

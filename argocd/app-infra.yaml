@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: charts/infra/postgresql-ha
-    repoURL: https://github.com/virtapp/terraform-metadata-deployment.git
+    repoURL: https://github.com/virtapp/terraform-terrakube-deployment.git
     targetRevision: HEAD
   syncPolicy:
     automated: {}
@@ -33,7 +33,7 @@ spec:
       - name: auth.rootPassword
         value: "test2test"
     path: charts/infra/mariadb-galera
-    repoURL: https://github.com/virtapp/terraform-metadata-deployment.git
+    repoURL: https://github.com/virtapp/terraform-terrakube-deployment.git
     targetRevision: HEAD
   syncPolicy:
     automated: {}
@@ -43,39 +43,21 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openmetadata-dependencies
+  name: terrakube
   namespace: argocd
 spec:
   destination:
-    namespace: default
+    namespace: terrakube
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: charts/infra/openmetadata-dependencies
-    repoURL: https://github.com/virtapp/terraform-metadata-deployment.git
+    path: charts/infra/terrakube
+    repoURL: https://github.com/virtapp/terraform-terrakube-deployment.git
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
-
----
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: openmetadata
-  namespace: argocd
-spec:
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: charts/infra/openmetadata
-    repoURL: https://github.com/virtapp/terraform-metadata-deployment.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
-
-
-
-
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    

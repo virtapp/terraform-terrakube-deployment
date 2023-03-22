@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: 2.11.2
+dependencies:
+- condition: storage.defaultStorage
+  name: minio
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.1.8
+- condition: api.defaultDatabase
+  name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.2.1
+- name: dex
+  repository: https://charts.dexidp.io
+  version: 0.13.0
+description: A Helm chart for Kubernetes
+name: terrakube
+type: application
+version: 3.2.1

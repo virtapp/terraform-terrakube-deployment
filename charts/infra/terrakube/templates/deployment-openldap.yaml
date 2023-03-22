@@ -1,0 +1,46 @@
+{{- if .Values.security.useOpenLDAP -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: terrakube-openldap
+  labels:
+    app: terrakube-openldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: terrakube-openldap
+  template:
+    metadata:
+      labels:
+        app: terrakube-openldap
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/secret-openldap.yaml") . | sha256sum }}
+    spec:
+      containers:
+      - name: terrakube-openldap
+        image: bitnami/openldap:2.6.4-debian-11-r4
+        env:
+        - name: LDAP_ADMIN_USERNAME
+          value: "admin"
+        - name: LDAP_ADMIN_PASSWORD
+          value: "admin"
+        - name: LDAP_ROOT
+          value: "dc=example,dc=org"
+        - name: LDAP_CUSTOM_LDIF_DIR
+          value: "/ldifs"
+        ports:
+        - containerPort: 1389
+        volumeMounts:
+        - name: openldap-config
+          mountPath: "/ldifs/config-ldap.ldif"
+          subPath: "config-ldap.ldif"
+          readOnly: true
+      volumes:
+        - name: openldap-config
+          secret:
+            secretName: terrakube-openldap-secrets
+            items:
+            - key: "config-ldap.ldif"
+              path: "config-ldap.ldif"
+{{ end }}
