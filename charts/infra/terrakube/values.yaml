@@ -9,14 +9,14 @@ security:
   internalSecret: "AxxPdgpCi72f8WhMXCTGhtfMRp6AuBfj"
   dexClientId: "example-app"
   dexClientScope: "email openid profile offline_access groups"
-  dexIssuerUri: "http://terrakube-api.minikube.net/dex"
+  dexIssuerUri: "http://terrakube-api.virtapp.io/dex"
 
 
 ## Dex
 dex:
   enabled: true
   config:
-    issuer: http://terrakube-api.minikube.net/dex
+    issuer: http://terrakube-api.virtapp.io/dex
 
     storage:
       type: memory
